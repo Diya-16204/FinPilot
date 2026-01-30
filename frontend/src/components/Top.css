@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+/* 🔹 Scoped container */
+.finpilot-top {
+  display: flex;
+  /* min-height: 100vh; */
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  font-family: "Poppins", sans-serif;
+}
+
+/* 🔹 Text wrapper */
+.finpilot-top__content {
+  position: relative;
+}
+
+/* 🔹 Animated heading */
+.finpilot-top__text {
+  color: #fff;
+  font-size: 8em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* 🔹 Outline text */
+.finpilot-top__text--outline {
+  color: transparent;
+  -webkit-text-stroke: 2px #6dd5ed;
+}
+
+/* 🔹 Filled animated text */
+.finpilot-top__text--fill {
+  color: #6dd5ed;
+  animation: finpilot-wave 4s ease-in-out infinite;
+}
+
+/* 🔹 Animation */
+@keyframes finpilot-wave {
+  0%,
+  100% {
+    clip-path: polygon(
+      0% 45%,
+      16% 44%,
+      33% 50%,
+      54% 60%,
+      70% 61%,
+      84% 59%,
+      100% 52%,
+      100% 100%,
+      0% 100%
+    );
+  }
+
+  50% {
+    clip-path: polygon(
+      0% 60%,
+      15% 65%,
+      34% 66%,
+      51% 62%,
+      67% 50%,
+      84% 45%,
+      100% 46%,
+      100% 100%,
+      0% 100%
+    );
+  }
+}

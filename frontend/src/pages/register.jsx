@@ -1,4 +1,4 @@
-import AuthSlider from "../components/authSlider";
+import AuthSlider from "../components/blogSlider";
 import { useNavigate, Link } from "react-router-dom";
 
 function Register() {

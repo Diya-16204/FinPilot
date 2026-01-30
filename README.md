@@ -1,6 +1,6 @@
-# Finilot
+# FinPilot
 
-Finilot is a full-stack personal finance management web application that helps users track income and expenses, visualize spending patterns, and gain insights into their financial habits.
+FinPilot is a full-stack personal finance management web application that helps users track income and expenses, visualize spending patterns, and gain insights into their financial habits.
 
 ## Features
 - User authentication

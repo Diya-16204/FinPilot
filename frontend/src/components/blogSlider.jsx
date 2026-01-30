@@ -24,16 +24,11 @@ const cards = [
 
 const BlogSlider = () => {
   const [current, setCurrent] = useState(0);
-
-  const handleClick = () => {
-    setCurrent((prev) => (prev + 1) % cards.length); // cycle through cards
-  };
-
   const card = cards[current];
 
   return (
     <div className="blog-slider">
-      <div className="blog-slider__item" onClick={handleClick}>
+      <div className="blog-slider__item">
         <div className="blog-slider__img">
           <img src={card.img} alt={card.title} />
         </div>
@@ -43,18 +38,18 @@ const BlogSlider = () => {
           <div className="blog-slider__title">{card.title}</div>
           <div className="blog-slider__text">{card.text}</div>
           <a href="#" className="blog-slider__button">READ MORE</a>
-        </div>
-      </div>
 
-      {/* 👇 Pagination dots */}
-      <div className="blog-slider__pagination">
-        {cards.map((_, index) => (
-          <span
-            key={index}
-            className={`dot ${index === current ? "active" : ""}`}
-            onClick={() => setCurrent(index)}
-          ></span>
-        ))}
+          {/* 👇 dots inside content so on mobile they appear below button */}
+          <div className="blog-slider__pagination">
+            {cards.map((_, index) => (
+              <span
+                key={index}
+                className={`dot ${index === current ? "active" : ""}`}
+                onClick={() => setCurrent(index)}
+              ></span>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

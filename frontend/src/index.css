@@ -81,3 +81,10 @@ html, body {
   overflow-y: auto !important;
 
 }
+
+
+
+body {
+  padding-top: 80px; /* Adjust based on actual navbar height */
+}
+

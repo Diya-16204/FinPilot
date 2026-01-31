@@ -1,61 +1,48 @@
 import { Routes, Route } from "react-router-dom";
 
 // Global Components
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import Navbar from "./components/Navbar/navbar";
+import Footer from "./components/Header_Footer_Top/footer";
 
-// Landing & Auth
-import BlogSlider from "./components/blogSlider";
-import Login from "./pages/login";
-import Register from "./pages/register";
+// Landing Component
+import BlogSlider from "./components/BlogSlider/blogSlider";
 
-// Dashboard
-import Dashboard from "./pages/dashBoard";
+// Auth Pages
+import Login from "./pages/Auth/login";
+import Register from "./pages/Auth/register";
 
-// Dashboard Feature Pages
-// import VisualizeExpenses from "./pages/visualizeExpense";
+// Dashboard Page
+import Dashboard from "./pages/Dashboard/dashboard";
 
-// Visualize Subpages (inside /pages/Visualize/)
+// Visualize Subpages
 import VisualizePie from "./pages/Visualize/pie";
 import VisualizeBar from "./pages/Visualize/bar";
 import VisualizeTrends from "./pages/Visualize/trend";
-
-// Future pages (optional)
-// import ViewExpenses from "./pages/viewExpenses";
-// import ModifyExpenses from "./pages/modifyExpenses";
-// import ExpensePrediction from "./pages/expensePrediction";
-// import ExportReports from "./pages/exportReports";
 
 function App() {
   return (
     <>
       <Navbar />
 
-      <Routes>
-        {/* Landing */}
-        <Route path="/" element={<BlogSlider />} />
+      {/* 👇 Wrap all page content inside a main wrapper */}
+      <main className="page-content">
+        <Routes>
+          {/* Landing */}
+          <Route path="/" element={<BlogSlider />} />
 
-        {/* Auth */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+          {/* Auth */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        {/* Dashboard */}
-        <Route path="/dashboard" element={<Dashboard />} />
+          {/* Dashboard */}
+          <Route path="/dashboard" element={<Dashboard />} />
 
-        {/* Visualize Expenses Main Page */}
-        {/* <Route path="/visualize-expenses" element={<VisualizeExpenses />} /> */}
-
-        {/* Visualize Subpages */}
-        <Route path="/visualize-expenses/pie" element={<VisualizePie />} />
-        <Route path="/visualize-expenses/bar" element={<VisualizeBar />} />
-        <Route path="/visualize-expenses/trends" element={<VisualizeTrends />} />
-
-        {/* Future Feature Routes (uncomment when ready) */}
-        {/* <Route path="/view-expenses" element={<ViewExpenses />} />
-        <Route path="/modify-expenses" element={<ModifyExpenses />} />
-        <Route path="/expense-prediction" element={<ExpensePrediction />} />
-        <Route path="/export-reports" element={<ExportReports />} /> */}
-      </Routes>
+          {/* Visualize Subpages */}
+          <Route path="/visualize-expenses/pie" element={<VisualizePie />} />
+          <Route path="/visualize-expenses/bar" element={<VisualizeBar />} />
+          <Route path="/visualize-expenses/trends" element={<VisualizeTrends />} />
+        </Routes>
+      </main>
 
       <Footer />
     </>

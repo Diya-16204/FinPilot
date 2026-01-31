@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 
+
 /* PAGE */
 .dashboard-section {
   min-height: 100vh;
@@ -14,6 +15,7 @@
   align-items: center;
 }
 
+
 /* HEADING */
 .dashboard-title {
   font-size: 34px;
@@ -22,6 +24,7 @@
   margin-bottom: 40px;
   text-align: center;
 }
+
 
 /* GRID BASE */
 .dashboard-grid {
@@ -170,3 +173,4 @@ when 4 toh aise
 implement this later 
 commiting for now
 */
+

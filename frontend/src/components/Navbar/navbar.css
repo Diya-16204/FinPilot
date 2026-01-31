@@ -44,3 +44,16 @@
 .finpilot-navbar .navbar-toggler-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,0.8%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
+
+
+/* 
+
+  Aisa hai naa ki navbar naa upar jaye vo fixed rahe screen pe but uske saath most importantly ye hai ki baaki content navbar ke neeche se start ho naa ki uske peeche chhup jaye
+
+*/
+
+.finpilot-navbar {
+  background-color: #010f29;
+  padding: 12px 24px;
+  z-index: 1030; /* Bootstrap default for fixed-top */
+}

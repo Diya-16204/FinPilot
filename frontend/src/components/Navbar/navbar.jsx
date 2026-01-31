@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import FinPilotLogo from "../assets/Images/FinPilotLogo.png";
+import FinPilotLogo from "../../assets/Images/FinPilotLogo.png";
 import "./navbar.css";
 
 const Navbar = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg finpilot-navbar">
+    <nav className="navbar navbar-expand-lg finpilot-navbar fixed-top">
         <div className="container">
           {/* Brand Logo */}
           <Link

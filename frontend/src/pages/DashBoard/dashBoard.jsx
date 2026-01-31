@@ -1,11 +1,11 @@
 import "./dashBoard.css";
 import { useNavigate } from "react-router-dom";
 
-import viewExpensesImg from "../assets/Images/DashBoardPage/ViewExpenses.png";
-import modifyExpensesImg from "../assets/Images/DashBoardPage/ManageExpenses.png";
-import visualizeExpensesImg from "../assets/Images/DashBoardPage/VisualizeResults.png";
-import expensePredictionImg from "../assets/Images/DashBoardPage/ExpensePrediction.png";
-import exportReportsImg from "../assets/Images/DashBoardPage/ExportResults.png";
+import viewExpensesImg from "../../assets/Images/DashBoardPage/ViewExpenses.png";
+import modifyExpensesImg from "../../assets/Images/DashBoardPage/ManageExpenses.png";
+import visualizeExpensesImg from "../../assets/Images/DashBoardPage/VisualizeResults.png";
+import expensePredictionImg from "../../assets/Images/DashBoardPage/ExpensePrediction.png";
+import exportReportsImg from "../../assets/Images/DashBoardPage/ExportResults.png";
 
 const cards = [
   {

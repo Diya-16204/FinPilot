@@ -1,5 +1,5 @@
 import "./footer.css";
-import FinPilotLogo from "../assets/Images/FinPilotLogo.png";
+import FinPilotLogo from "../../assets/Images/FinPilotLogo.png";
 
 const Footer = () => {
   return (

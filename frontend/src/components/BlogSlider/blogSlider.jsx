@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./blogSlider.scss";
-import loginImg from "../assets/Images/FirstPage/Login.png";
-import signInImg from "../assets/Images/FirstPage/SignIn.png";
-import continueImg from "../assets/Images/1stPage/ContinueWithoutRegistering.png";
+import loginImg from "../../assets/Images/FirstPage/Login.png";
+import signInImg from "../../assets/Images/FirstPage/SignIn.png";
+import continueImg from "../../assets/Images/FirstPage/ContinueWithoutRegistering.png";
 import { useNavigate } from "react-router-dom";
 import Heading from "../Header_Footer_Top/Heading";
 import Top from "../Header_Footer_Top/Top";

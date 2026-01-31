@@ -1,0 +1,172 @@
+/* Scoped reset */
+.dashboard-section * {
+  box-sizing: border-box;
+}
+
+/* PAGE */
+.dashboard-section {
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #6dd5ed);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HEADING */
+.dashboard-title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+/* GRID BASE */
+.dashboard-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* CARD BASE */
+.dashboard-card {
+  background: #ffffff;
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  min-height: 400px;
+  transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+}
+
+/* IMAGE */
+.dashboard-card-image {
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dashboard-card-image img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+/* CONTENT */
+.dashboard-card-content {
+  height: 50%;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.dashboard-card-content h3 {
+  font-size: 20px;
+  color: #1e3c72;
+}
+
+.dashboard-card-content p {
+  font-size: 14px;
+  color: #555;
+  text-align: justify;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.dashboard-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.dashboard-card-actions button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 16px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #1e3c72, #6dd5ed);
+  color: #ffffff;
+}
+
+/* 📐 RESPONSIVE GRID */
+
+/* 3 cards per row */
+@media (min-width: 1165px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(6, 1fr); /* 6 equal columns */
+  }
+
+  .dashboard-card {
+    grid-column: span 2;
+  }
+
+  /* Special staggered layout for 5 cards */
+  .dashboard-card:nth-child(1) { grid-column: 1 / span 2; }
+  .dashboard-card:nth-child(2) { grid-column: 3 / span 2; }
+  .dashboard-card:nth-child(3) { grid-column: 5 / span 2; }
+  .dashboard-card:nth-child(4) { grid-column: 2 / span 2; }
+  .dashboard-card:nth-child(5) { grid-column: 4 / span 2; }
+}
+
+/* 2 cards per row */
+@media (min-width: 765px) and (max-width: 1164px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-evenly;
+
+  }
+
+  .dashboard-card {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+}
+
+/* 1 card per row */
+@media (max-width: 764px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-card {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+
+
+/* 
+
+when 3 cards then aise karo
+1   2
+  3 
+  
+when 4 toh aise
+1  2
+3  4
+
+
+
+implement this later 
+commiting for now
+*/

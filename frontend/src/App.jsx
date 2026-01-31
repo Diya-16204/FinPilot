@@ -19,13 +19,23 @@ import VisualizePie from "./pages/Visualize/pie";
 import VisualizeBar from "./pages/Visualize/bar";
 import VisualizeTrends from "./pages/Visualize/trend";
 
+// Export Reports Subpages
+import ExportCSV from "./pages/ExportReports/csv";
+import ExportPDF from "./pages/ExportReports/pdf";
+import ExportExcel from "./pages/ExportReports/excel";
+
+// 👇 ScrollToTop Component
+import ScrollToTop from "./components/ScrollToTop";
+
 function App() {
   return (
     <>
       <Navbar />
 
-      {/* 👇 Wrap all page content inside a main wrapper */}
       <main className="page-content">
+        {/* 👇 ensures page always starts at top on route change */}
+        <ScrollToTop />
+
         <Routes>
           {/* Landing */}
           <Route path="/" element={<BlogSlider />} />
@@ -37,10 +47,15 @@ function App() {
           {/* Dashboard */}
           <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* Visualize Subpages */}
+          {/* Visualize Expenses */}
           <Route path="/visualize-expenses/pie" element={<VisualizePie />} />
           <Route path="/visualize-expenses/bar" element={<VisualizeBar />} />
           <Route path="/visualize-expenses/trends" element={<VisualizeTrends />} />
+
+          {/* Export Reports */}
+          <Route path="/export-reports/csv" element={<ExportCSV />} />
+          <Route path="/export-reports/pdf" element={<ExportPDF />} />
+          <Route path="/export-reports/excel" element={<ExportExcel />} />
         </Routes>
       </main>
 

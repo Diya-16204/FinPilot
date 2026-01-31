@@ -1,0 +1,41 @@
+.export-page {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #f8f9fa;
+  padding-top: 100px;
+}
+
+.export-page h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #010f29;
+  margin-bottom: 20px;
+}
+
+.export-page p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.export-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.export-actions button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #010f29;
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.export-actions button:hover {
+  background-color: #023e8a;
+}

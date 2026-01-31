@@ -82,7 +82,7 @@
 .dashboard-card-content p {
   font-size: 14px;
   color: #555;
-  text-align: justify;
+  text-align: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;

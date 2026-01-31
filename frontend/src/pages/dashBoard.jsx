@@ -1,4 +1,5 @@
 import "./dashBoard.css";
+import { useNavigate } from "react-router-dom";
 
 import viewExpensesImg from "../assets/Images/DashBoardPage/ViewExpenses.png";
 import modifyExpensesImg from "../assets/Images/DashBoardPage/ManageExpenses.png";
@@ -11,35 +12,57 @@ const cards = [
     title: "View Expenses",
     desc: "View all recorded expenses in a structured and categorized format.",
     img: viewExpensesImg,
-    actions: ["View", "Filter", "Search"],
+    actions: [
+      { label: "View", route: "/view-expenses" },
+      { label: "Filter", route: "/view-expenses/filter" },
+      { label: "Search", route: "/view-expenses/search" },
+    ],
   },
   {
     title: "Modify Expenses",
     desc: "Edit or delete existing expense records to keep data accurate.",
     img: modifyExpensesImg,
-    actions: ["Edit", "Delete", "Update"],
+    actions: [
+      { label: "Edit", route: "/modify-expenses/edit" },
+      { label: "Delete", route: "/modify-expenses/delete" },
+      { label: "Update", route: "/modify-expenses/update" },
+    ],
   },
   {
     title: "Visualize Expenses",
     desc: "Analyze spending patterns using charts and graphs.",
     img: visualizeExpensesImg,
-    actions: ["Pie", "Bar", "Trends"],
+    actions: [
+      { label: "Pie", route: "/visualize-expenses/pie" },
+      { label: "Bar", route: "/visualize-expenses/bar" },
+      { label: "Trends", route: "/visualize-expenses/trends" },
+    ],
   },
   {
     title: "Expense Prediction",
     desc: "Predict future expenses using historical spending data.",
     img: expensePredictionImg,
-    actions: ["Forecast", "Monthly", "Yearly"],
+    actions: [
+      { label: "Forecast", route: "/expense-prediction/forecast" },
+      { label: "Monthly", route: "/expense-prediction/monthly" },
+      { label: "Yearly", route: "/expense-prediction/yearly" },
+    ],
   },
   {
     title: "Export Reports",
     desc: "Download expense reports in CSV or PDF format.",
     img: exportReportsImg,
-    actions: ["CSV", "PDF", "Excel"],
+    actions: [
+      { label: "CSV", route: "/export-reports/csv" },
+      { label: "PDF", route: "/export-reports/pdf" },
+      { label: "Excel", route: "/export-reports/excel" },
+    ],
   },
 ];
 
 const DashBoard = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="dashboard-section">
       <h2 className="dashboard-title">Expense Management Dashboard</h2>
@@ -56,8 +79,10 @@ const DashBoard = () => {
               <p>{card.desc}</p>
 
               <div className="dashboard-card-actions">
-                {card.actions.map((a, i) => (
-                  <button key={i}>{a}</button>
+                {card.actions.map((action, i) => (
+                  <button key={i} onClick={() => navigate(action.route)}>
+                    {action.label}
+                  </button>
                 ))}
               </div>
             </div>

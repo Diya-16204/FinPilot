@@ -1,0 +1,60 @@
+.visualize-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa, #e9eff5);
+  padding: 20px;
+}
+
+.visualize-section h2 {
+  font-size: 45px;
+  margin-bottom: 25px;
+  color: #010f29;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 700;
+  font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  padding: 30px;
+  margin-top: 20px;
+  width: fit-content;
+  max-width: 90%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+
+.chart-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .visualize-section h2 {
+    font-size: 40px;
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 700;
+    font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .chart-container {
+    width: 95%;
+    padding: 20px;
+  }
+}

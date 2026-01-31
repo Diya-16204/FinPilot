@@ -1,0 +1,25 @@
+.prediction-page {
+  padding: 40px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #6dd5ed);
+}
+
+.prediction-page h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 20px;
+  padding-top: 80px;
+}
+
+.prediction-page p {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+.prediction-page h3 {
+  font-size: 1.5rem;
+  color: #aab7ba;
+  margin-top: 20px;
+}

@@ -1,7 +1,7 @@
 .export-page {
   padding: 40px 20px;
   text-align: center;
-  background-color: #f8f9fa;
+  background: linear-gradient(135deg, #1e3c72, #2a5298, #6dd5ed);
   padding-top: 100px;
 }
 
@@ -14,7 +14,7 @@
 
 .export-page p {
   font-size: 1rem;
-  color: #555;
+  color: #ffffff;
   margin-bottom: 30px;
 }
 

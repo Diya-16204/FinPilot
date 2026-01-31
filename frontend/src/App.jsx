@@ -24,6 +24,11 @@ import ExportCSV from "./pages/ExportReports/csv";
 import ExportPDF from "./pages/ExportReports/pdf";
 import ExportExcel from "./pages/ExportReports/excel";
 
+// Expense Prediction Subpages 👇
+import ExpenseForecast from "./pages/ExpensePrediction/forecast";
+import ExpenseMonthly from "./pages/ExpensePrediction/monthly";
+import ExpenseYearly from "./pages/ExpensePrediction/yearly";
+
 // 👇 ScrollToTop Component
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -56,6 +61,11 @@ function App() {
           <Route path="/export-reports/csv" element={<ExportCSV />} />
           <Route path="/export-reports/pdf" element={<ExportPDF />} />
           <Route path="/export-reports/excel" element={<ExportExcel />} />
+
+          {/* Expense Prediction */}
+          <Route path="/expense-prediction/forecast" element={<ExpenseForecast />} />
+          <Route path="/expense-prediction/monthly" element={<ExpenseMonthly />} />
+          <Route path="/expense-prediction/yearly" element={<ExpenseYearly />} />
         </Routes>
       </main>
 

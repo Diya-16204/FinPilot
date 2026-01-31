@@ -66,3 +66,21 @@
     );
   }
 }
+
+
+
+@media (max-width: 768px) {
+  .finpilot-top__text {
+    /* position: relative; */
+    font-size: 6em;
+  }
+}
+
+@media (max-width: 768px) {
+  .finpilot-top__text {
+    top: 58%; /* thoda neeche shift */
+    font-size: 4.5em; /* thoda chhota for mobile */
+    transform: translate(-50%, 0%);
+  }
+}
+

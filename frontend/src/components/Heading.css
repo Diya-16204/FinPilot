@@ -40,3 +40,17 @@
     font-size: 34px;   /* 👈 mobile size */
   }
 }
+
+
+@media (max-width: 768px) {
+  h1.heading {
+    font-size: 34px;   /* 👈 mobile size */
+    margin-bottom: 16px; /* 🔹 smaller but still spaced */
+    transform: translate(0%, 50%);
+  }
+
+  .subheading {
+    font-size: 16px;
+    margin-top: 20px;  /* 🔹 keep breathing room */
+  }
+}

@@ -1,62 +1,22 @@
-import { useEffect, useState } from "react";
-import "./viewExpense.css"; // in viewExpense.jsx
+import ViewAll from "./viewAll";
+import FilterView from "./filterView";
+import SearchView from "./searchView";
 
 const ViewExpenses = () => {
-  const [expenses, setExpenses] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:5000/expenses")
-      .then(res => {
-        if (!res.ok) {
-          throw new Error("Failed to fetch expenses");
-        }
-        return res.json();
-      })
-      .then(data => {
-        console.log("Fetched expenses:", data); // 👈 Debug log
-        setExpenses(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Error fetching expenses:", err);
-        setError(err.message);
-        setLoading(false);
-      });
-  }, []);
+  const [active, setActive] = useState("view");
 
   return (
     <div className="expenses-page">
-      <h2>All Expenses</h2>
+      <h2>View Expenses</h2>
+      <div className="button-group">
+        <button onClick={() => setActive("view")}>View</button>
+        <button onClick={() => setActive("filter")}>Filter</button>
+        <button onClick={() => setActive("search")}>Search</button>
+      </div>
 
-      {loading && <p>Loading expenses...</p>}
-      {error && <p style={{ color: "red" }}>Error: {error}</p>}
-
-      {!loading && !error && expenses.length > 0 ? (
-        <table border="1" style={{ margin: "auto", width: "80%" }}>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Amount</th>
-              <th>Category</th>
-            </tr>
-          </thead>
-          <tbody>
-            {expenses.map((exp, idx) => (
-              <tr key={idx}>
-                <td>{exp.date}</td>
-                <td>₹{exp.amount}</td>
-                <td>{exp.category}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        !loading && !error && <p>No expenses found.</p>
-      )}
+      {active === "view" && <ViewAll />}
+      {active === "filter" && <FilterView />}
+      {active === "search" && <SearchView />}
     </div>
   );
 };
-
-export default ViewExpenses;

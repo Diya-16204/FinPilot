@@ -18,16 +18,17 @@ const cards = [
       { label: "Search", route: "/view-expenses/search" },
     ],
   },
-  {
-    title: "Modify Expenses",
-    desc: "Edit or delete existing expense records to keep data accurate.",
-    img: modifyExpensesImg,
-    actions: [
-      { label: "Edit", route: "/modify-expenses/edit" },
-      { label: "Delete", route: "/modify-expenses/delete" },
-      { label: "Update", route: "/modify-expenses/update" },
-    ],
-  },
+{
+  title: "Modify Expenses",
+  desc: "Add, delete or update expense records to keep data accurate.",
+  img: modifyExpensesImg,
+  actions: [
+    { label: "Add", route: "/modify-expenses/add" },
+    { label: "Delete", route: "/modify-expenses/delete" },
+    { label: "Update", route: "/modify-expenses/update" },
+  ],
+},
+
   {
     title: "Visualize Expenses",
     desc: "Analyze spending patterns using charts and graphs.",

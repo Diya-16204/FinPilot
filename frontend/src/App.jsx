@@ -30,8 +30,13 @@ import ExpenseMonthly from "./pages/ExpensePrediction/monthly";
 import ExpenseYearly from "./pages/ExpensePrediction/yearly";
 
 // Expense Management Subpages 👇
-import ViewExpenses from "./pages/ViewExpenses/viewExpense";
-import ModifyExpenses from "./pages/ModifyExpenses/modifyExpense";
+import ViewAll from "./pages/ViewExpenses/viewAll";
+import FilterView from "./pages/ViewExpenses/filterView";
+import SearchView from "./pages/ViewExpenses/searchView";
+
+import AddExpense from "./pages/ModifyExpenses/addExpense";
+import DeleteExpense from "./pages/ModifyExpenses/deleteExpense";
+import UpdateExpense from "./pages/ModifyExpenses/updateExpense";
 
 // 👇 ScrollToTop Component
 import ScrollToTop from "./components/ScrollToTop";
@@ -72,12 +77,16 @@ function App() {
           <Route path="/expense-prediction/yearly" element={<ExpenseYearly />} />
 
           {/* Expense Management */}
-          <Route path="/view-expenses" element={<ViewExpenses />} />
-          <Route path="/view-expenses/filter" element={<ViewExpenses />} />
-          <Route path="/view-expenses/search" element={<ViewExpenses />} />
-          <Route path="/modify-expenses/edit" element={<ModifyExpenses />} />
-          <Route path="/modify-expenses/delete" element={<ModifyExpenses />} />
-          <Route path="/modify-expenses/update" element={<ModifyExpenses />} />
+          {/* View Expenses Subpages */}
+          <Route path="/view-expenses" element={<ViewAll />} />
+          <Route path="/view-expenses/filter" element={<FilterView />} />
+          <Route path="/view-expenses/search" element={<SearchView />} />
+
+          {/* Modify Expenses Subpages */}
+          <Route path="/modify-expenses/add" element={<AddExpense />} />
+          <Route path="/modify-expenses/delete" element={<DeleteExpense />} />
+          <Route path="/modify-expenses/update" element={<UpdateExpense />} />
+
         </Routes>
       </main>
 

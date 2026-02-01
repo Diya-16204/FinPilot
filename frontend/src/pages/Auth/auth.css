@@ -1,0 +1,153 @@
+/* Full page layout */
+.auth-container {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Right side form box */
+.auth-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical center */
+  align-items: center;       /* horizontal center */
+  padding: 3rem;
+  max-width: 400px;          /* fixed width for neat look */
+  margin: auto;  
+  height: auto;
+  width: 50%;            /* center in available space */
+}
+
+
+/* Heading */
+.auth-form h2 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: #d1d4dc;
+  text-align: center;
+  padding-top: 40px;
+  text-decoration: underline;
+}
+
+/* Input fields */
+.auth-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+/* Buttons */
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1287e7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+
+.auth-form button:hover {
+  background-color: #010e18;
+}
+
+/* Links */
+.auth-form p {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e5e5f0;
+}
+
+.auth-form p div{
+    text-decoration: underline black;
+
+}
+
+.auth-form a {
+  color: #080c10;
+  text-decoration: none;
+  font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.auth-form a:hover {
+  text-decoration: underline;
+}
+
+
+
+.auth-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column; /* 👈 ensures vertical stacking */
+  gap: 1rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+
+.auth-section {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+
+.terms {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+
+.terms-line {
+  display: flex;
+  align-items: center;      /* 👈 vertical alignment fix */
+  gap: 0.6rem;   
+  color: #ccc;           /* 👈 spacing between checkbox and text */
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;           /* 👈 ensures label doesn't stretch vertically */
+}
+
+.terms-line input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;                /* 👈 removes default vertical offset */
+  vertical-align: middle;  /* 👈 aligns checkbox with label text */
+}
+

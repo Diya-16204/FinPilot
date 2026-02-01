@@ -1,5 +1,5 @@
-import AuthSlider from "../../components/BlogSlider/blogSlider";
 import { useNavigate, Link } from "react-router-dom";
+import "./auth.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -10,27 +10,23 @@ function Register() {
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <AuthSlider />
-
-      <div style={{ flex: 1, padding: "3rem" }}>
-        <h2>Register</h2>
-
-        <form onSubmit={handleRegister}>
-          <input placeholder="Name" />
-          <br /><br />
-          <input placeholder="Email" />
-          <br /><br />
-          <input type="password" placeholder="Password" />
-          <br /><br />
-          <button>Create Account</button>
-        </form>
-
-        <p>
-          Already have an account? <Link to="/">Login</Link>
-        </p>
+    <form className="auth-form" onSubmit={handleRegister}>
+      <h2>Register</h2>
+      <input name="name" placeholder="Name" required />
+      <input name="email" type="email" placeholder="Email" required />
+      <input name="password" type="password" placeholder="Password" required />
+      <input name="confirmPassword" type="password" placeholder="Confirm Password" required />
+      <div className="terms-line">
+        <input type="checkbox" id="terms" required />
+        <label htmlFor="terms">Accept Terms & Conditions</label>
       </div>
-    </div>
+
+
+      <button type="submit">Create Account</button>
+      <p>
+        Already have an account? <div><Link to="#" onClick={() => navigate("/")}>Login</Link></div>
+      </p>
+    </form>
   );
 }
 

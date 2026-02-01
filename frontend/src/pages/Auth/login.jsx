@@ -1,5 +1,5 @@
-import AuthSlider from "../../components/BlogSlider/blogSlider";
 import { useNavigate, Link } from "react-router-dom";
+import "./auth.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -11,25 +11,15 @@ function Login() {
   }
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <AuthSlider />
-
-      <div style={{ flex: 1, padding: "3rem" }}>
-        <h2>Login</h2>
-
-        <form onSubmit={handleLogin}>
-          <input placeholder="Email" />
-          <br /><br />
-          <input type="password" placeholder="Password" />
-          <br /><br />
-          <button>Login</button>
-        </form>
-
-        <p>
-          Don’t have an account? <Link to="/register">Register</Link>
-        </p>
-      </div>
-    </div>
+    <form className="auth-form" onSubmit={handleLogin}>
+      <h2>Login</h2>
+      <input name="email" type="email" placeholder="Email" required />
+      <input name="password" type="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <p>
+        Don’t have an account? <div><Link to="#" onClick={() => navigate("/")}>Register Now</Link></div>
+      </p>
+    </form>
   );
 }
 

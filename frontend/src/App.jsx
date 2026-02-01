@@ -29,6 +29,10 @@ import ExpenseForecast from "./pages/ExpensePrediction/forecast";
 import ExpenseMonthly from "./pages/ExpensePrediction/monthly";
 import ExpenseYearly from "./pages/ExpensePrediction/yearly";
 
+// Expense Management Subpages 👇
+import ViewExpenses from "./pages/ViewExpenses/viewExpense";
+import ModifyExpenses from "./pages/ModifyExpenses/modifyExpense";
+
 // 👇 ScrollToTop Component
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -66,6 +70,14 @@ function App() {
           <Route path="/expense-prediction/forecast" element={<ExpenseForecast />} />
           <Route path="/expense-prediction/monthly" element={<ExpenseMonthly />} />
           <Route path="/expense-prediction/yearly" element={<ExpenseYearly />} />
+
+          {/* Expense Management */}
+          <Route path="/view-expenses" element={<ViewExpenses />} />
+          <Route path="/view-expenses/filter" element={<ViewExpenses />} />
+          <Route path="/view-expenses/search" element={<ViewExpenses />} />
+          <Route path="/modify-expenses/edit" element={<ModifyExpenses />} />
+          <Route path="/modify-expenses/delete" element={<ModifyExpenses />} />
+          <Route path="/modify-expenses/update" element={<ModifyExpenses />} />
         </Routes>
       </main>
 

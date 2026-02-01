@@ -24,12 +24,12 @@ import ExportCSV from "./pages/ExportReports/csv";
 import ExportPDF from "./pages/ExportReports/pdf";
 import ExportExcel from "./pages/ExportReports/excel";
 
-// Expense Prediction Subpages 👇
+// Expense Prediction Subpages
 import ExpenseForecast from "./pages/ExpensePrediction/forecast";
 import ExpenseMonthly from "./pages/ExpensePrediction/monthly";
 import ExpenseYearly from "./pages/ExpensePrediction/yearly";
 
-// Expense Management Subpages 👇
+// Expense Management Subpages
 import ViewAll from "./pages/ViewExpenses/viewAll";
 import FilterView from "./pages/ViewExpenses/filterView";
 import SearchView from "./pages/ViewExpenses/searchView";
@@ -38,7 +38,13 @@ import AddExpense from "./pages/ModifyExpenses/addExpense";
 import DeleteExpense from "./pages/ModifyExpenses/deleteExpense";
 import UpdateExpense from "./pages/ModifyExpenses/updateExpense";
 
-// 👇 ScrollToTop Component
+// // Reports Page (wrapper)
+// import Reports from "./pages/Reports/reports";
+
+// Contact Page
+import Contact from "./pages/Contacts/contacts";
+
+// ScrollToTop Component
 import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
@@ -47,7 +53,7 @@ function App() {
       <Navbar />
 
       <main className="page-content">
-        {/* 👇 ensures page always starts at top on route change */}
+        {/* ensures page always starts at top on route change */}
         <ScrollToTop />
 
         <Routes>
@@ -70,6 +76,7 @@ function App() {
           <Route path="/export-reports/csv" element={<ExportCSV />} />
           <Route path="/export-reports/pdf" element={<ExportPDF />} />
           <Route path="/export-reports/excel" element={<ExportExcel />} />
+          <Route path="/reports" element={<ExportCSV />} />   {/* 👈 wrapper route */}
 
           {/* Expense Prediction */}
           <Route path="/expense-prediction/forecast" element={<ExpenseForecast />} />
@@ -77,16 +84,16 @@ function App() {
           <Route path="/expense-prediction/yearly" element={<ExpenseYearly />} />
 
           {/* Expense Management */}
-          {/* View Expenses Subpages */}
           <Route path="/view-expenses" element={<ViewAll />} />
           <Route path="/view-expenses/filter" element={<FilterView />} />
           <Route path="/view-expenses/search" element={<SearchView />} />
 
-          {/* Modify Expenses Subpages */}
           <Route path="/modify-expenses/add" element={<AddExpense />} />
           <Route path="/modify-expenses/delete" element={<DeleteExpense />} />
           <Route path="/modify-expenses/update" element={<UpdateExpense />} />
 
+          {/* Contact */}
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 

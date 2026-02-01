@@ -15,4 +15,4 @@ FinPilot is a full-stack personal finance management web application that helps 
 - Database: MongoDB
 
 ## Status
-🚧 In development
+🚧 In development -React Frontend Porton Done

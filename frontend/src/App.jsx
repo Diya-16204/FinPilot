@@ -18,9 +18,10 @@ import Dashboard from "./pages/Dashboard/dashboard";
 import VisualizePie from "./pages/Visualize/pie";
 import VisualizeBar from "./pages/Visualize/bar";
 import VisualizeTrends from "./pages/Visualize/trend";
-import ExportCSV from "./pages/ExportReports/csv";
-import ExportPDF from "./pages/ExportReports/pdf";
-import ExportExcel from "./pages/ExportReports/excel";
+import ExportReports from "./pages/ExportReports/exportReports";   // ✅ overall combined export
+import ExportCSV from "./pages/ExportReports/csv";                 // ✅ dedicated CSV page
+import ExportExcel from "./pages/ExportReports/excel";             // ✅ dedicated Excel page
+import ExportPDF from "./pages/ExportReports/pdf";                 // ✅ dedicated PDF page
 import ExpenseForecast from "./pages/ExpensePrediction/forecast";
 import ExpenseMonthly from "./pages/ExpensePrediction/monthly";
 import ExpenseYearly from "./pages/ExpensePrediction/yearly";
@@ -58,38 +59,49 @@ function App() {
       <main className="page-content">
         <ScrollToTop />
 
-        {/* Always show BlogSlider on home */}
+        {/* Routes */}
         <Routes>
+          {/* Home */}
           <Route path="/" element={<BlogSlider />} />
 
-          {/* Dashboard (separate page) */}
+          {/* Dashboard */}
           <Route path="/dashboard" element={<Dashboard />} />
 
-          {/* Auth Routes (separate pages if needed) */}
+          {/* Auth */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* Other Pages */}
+          {/* Visualization */}
           <Route path="/visualize-expenses/pie" element={<VisualizePie />} />
           <Route path="/visualize-expenses/bar" element={<VisualizeBar />} />
           <Route path="/visualize-expenses/trends" element={<VisualizeTrends />} />
-          <Route path="/export-reports/csv" element={<ExportCSV />} />
-          <Route path="/export-reports/pdf" element={<ExportPDF />} />
-          <Route path="/export-reports/excel" element={<ExportExcel />} />
-          <Route path="/reports" element={<ExportCSV />} />
+
+          {/* ✅ Export Reports */}
+          <Route path="/export-reports" element={<ExportReports />} />   {/* Overall page */}
+          <Route path="/export-reports/csv" element={<ExportCSV />} />   {/* CSV only */}
+          <Route path="/export-reports/excel" element={<ExportExcel />} /> {/* Excel only */}
+          <Route path="/export-reports/pdf" element={<ExportPDF />} />   {/* PDF only */}
+
+          {/* Expense Prediction */}
           <Route path="/expense-prediction/forecast" element={<ExpenseForecast />} />
           <Route path="/expense-prediction/monthly" element={<ExpenseMonthly />} />
           <Route path="/expense-prediction/yearly" element={<ExpenseYearly />} />
+
+          {/* View Expenses */}
           <Route path="/view-expenses" element={<ViewAll />} />
           <Route path="/view-expenses/filter" element={<FilterView />} />
           <Route path="/view-expenses/search" element={<SearchView />} />
+
+          {/* Modify Expenses */}
           <Route path="/modify-expenses/add" element={<AddExpense />} />
           <Route path="/modify-expenses/delete" element={<DeleteExpense />} />
           <Route path="/modify-expenses/update" element={<UpdateExpense />} />
+
+          {/* Contact */}
           <Route path="/contact" element={<Contact />} />
         </Routes>
 
-        {/* Inline Auth Section (footer ke upar) */}
+        {/* Inline Auth Section */}
         {authType && (
           <div className="auth-section">
             {authType === "login" && <Login />}

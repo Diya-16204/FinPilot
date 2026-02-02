@@ -1,29 +1,30 @@
 import "./exportReports.css";
 import * as XLSX from "xlsx";
+import { useEffect, useState } from "react";
+import { filterExpenses } from "../../utils/filterUtils.js";
 
 const ExportExcel = () => {
-  const handleExport = (range) => {
-    const transactions = [
-      { date: "2026-01-01", item: "Groceries", amount: 1200 },
-      { date: "2026-01-02", item: "Fuel", amount: 1500 },
-    ];
+  const [expenses, setExpenses] = useState([]);
 
-    let filtered = transactions;
-    if (range === "recent") {
-      filtered = transactions.slice(-10);
+  useEffect(() => {
+    async function fetchExpenses() {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+      const res = await fetch("http://127.0.0.1:5000/expenses", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const data = await res.json();
+      if (res.ok) setExpenses(data);
     }
+    fetchExpenses();
+  }, []);
 
-    // 👇 Convert JSON to worksheet
+  const handleExport = (range) => {
+    const filtered = filterExpenses(expenses, range);
     const worksheet = XLSX.utils.json_to_sheet(filtered);
-
-    // 👇 Create workbook and append worksheet
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Transactions");
-
-    // 👇 Export to Excel file
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Expenses");
     XLSX.writeFile(workbook, `transactions_${range}.xlsx`);
-
-    console.log("Excel Export triggered:", range); // 👈 Debug check
   };
 
   return (
@@ -31,11 +32,10 @@ const ExportExcel = () => {
       <h2>Export Excel</h2>
       <p>Download your expense reports in Excel format.</p>
       <div className="export-actions">
-        <button onClick={() => handleExport("recent")}>Export Recent Transactions</button>
-        <button onClick={() => handleExport("week")}>Export Last 1 Week</button>
-        <button onClick={() => handleExport("month")}>Export Last 1 Month</button>
-        <button onClick={() => handleExport("year")}>Export Last 1 Year</button>
-        <button onClick={() => handleExport("custom")}>Export by Custom Date</button>
+        <button onClick={() => handleExport("recent")}>Export Recent</button>
+        <button onClick={() => handleExport("week")}>Export Last Week</button>
+        <button onClick={() => handleExport("month")}>Export Last Month</button>
+        <button onClick={() => handleExport("year")}>Export Last Year</button>
       </div>
     </div>
   );

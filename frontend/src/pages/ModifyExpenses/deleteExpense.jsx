@@ -6,21 +6,36 @@ const DeleteExpense = () => {
   const [message, setMessage] = useState("");
 
   const handleDelete = async () => {
-    const res = await fetch("http://127.0.0.1:5000/expenses");
-    const data = await res.json();
-    const updated = data.filter(e => e.date !== date);
+    const token = localStorage.getItem("token"); // ✅ check login
+    if (!token) {
+      setMessage("Guest mode: Cannot delete expense.");
+      return;
+    }
 
     const confirm = window.confirm("Are you sure you want to delete this expense?");
     if (!confirm) return;
 
-    const saveRes = await fetch("http://127.0.0.1:5000/expenses/update", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ expenses: updated }),
-    });
+    try {
+      const res = await fetch("http://127.0.0.1:5000/expenses/delete", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // ✅ send token
+        },
+        body: JSON.stringify({ date }), // ✅ backend will delete by date
+      });
 
-    const result = await saveRes.json();
-    setMessage(result.message || "Deleted.");
+      const data = await res.json();
+      if (res.ok) {
+        setMessage(data.message || "Expense deleted successfully!");
+        setDate("");
+      } else {
+        setMessage(data.error || "Failed to delete expense");
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage("Error deleting expense");
+    }
   };
 
   return (

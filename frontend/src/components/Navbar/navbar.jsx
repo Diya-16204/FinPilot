@@ -53,11 +53,21 @@ const Navbar = () => {
                   <i className="fa fa-th-list fa-fw me-1"></i>Dashboard
                 </Link>
               </li>
+
+              {/* Reports page (summary or view expenses) */}
               <li className="nav-item">
-                <Link className="nav-link" to="/reports" onClick={handleClose}>
+                <Link className="nav-link" to="/view-expenses" onClick={handleClose}>
                   <i className="fa fa-info-circle fa-fw me-1"></i>Reports
                 </Link>
               </li>
+
+              {/* ✅ Export Reports page */}
+              <li className="nav-item">
+                <Link className="nav-link" to="/export-reports" onClick={handleClose}>
+                  <i className="fa fa-download fa-fw me-1"></i>Export Reports
+                </Link>
+              </li>
+
               <li className="nav-item">
                 <Link className="nav-link" to="/contact" onClick={handleClose}>
                   <i className="fa fa-phone fa-fw me-1"></i>Contact
@@ -82,3 +92,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

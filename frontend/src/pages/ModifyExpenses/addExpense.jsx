@@ -7,15 +7,39 @@ const AddExpense = () => {
   const [category, setCategory] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleAdd = () => {
-    fetch("http://127.0.0.1:5000/expenses/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ date, amount, category }),
-    })
-      .then(res => res.json())
-      .then(data => setMessage(data.message || data.error))
-      .catch(() => setMessage("Error adding expense"));
+  const handleAdd = async () => {
+    const token = localStorage.getItem("token"); // ✅ check if user is logged in
+
+    if (!token) {
+      // Guest mode → no DB save
+      setMessage("Guest mode: Expense not saved permanently.");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://127.0.0.1:5000/expenses/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // ✅ send token
+        },
+        body: JSON.stringify({ date, amount, category }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setMessage(data.message || "Expense added successfully!");
+        // ✅ optional: clear form after success
+        setDate("");
+        setAmount("");
+        setCategory("");
+      } else {
+        setMessage(data.error || "Failed to add expense");
+      }
+    } catch (err) {
+      console.error(err);
+      setMessage("Error adding expense");
+    }
   };
 
   return (

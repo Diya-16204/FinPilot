@@ -25,9 +25,9 @@ FinPilot is a full-stack personal finance management web application that helps 
 
 ## 📂 Project Structure
 FinPilot/
-│── backend/ # Express + MongoDB API
-│── frontend/ # React application
-│── README.md
+- │── backend/ # Express + MongoDB API
+- │── frontend/ # React application
+- │── README.md
 
 
 ---
@@ -45,41 +45,50 @@ FinPilot/
 ```bash
 git clone https://github.com/your-username/FinPilot.git
 cd FinPilot
+```
+### 2. Install dependencies
+  - Backend
+      ````bash
+      cd backend
+      npm install
+      ````
 
-2. Install dependencies
-Backend
-cd backend
-npm install
+  - Frontend
+    ```bash
+      cd ../frontend
+      npm install
+    ```
 
-Frontend
-cd ../frontend
-npm install
+### 3. Configure environment variables
+  ```bash
+     Create a .env file inside the backend/ directory:
+     PORT=5000
+     MONGO_URI=mongodb://localhost:27017/finpilot
+     JWT_SECRET=your_secret_key
+  ```
 
-3. Configure environment variables
+### 4. Run the application
+  - Start backend
+    ```bash
+      cd backend
+      npm start
+    ```
 
-Create a .env file inside the backend/ directory:
-
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/finpilot
-JWT_SECRET=your_secret_key
-4. Run the application
-Start backend
-cd backend
-npm start
-
-Start frontend
-cd ../frontend
-npm start
+  - Start frontend
+   ```bash
+      cd ../frontend
+      npm start
+  ```
 
 
-Frontend runs on: http://localhost:3000
+  #### Frontend runs on: http://localhost:3000
 
-Backend runs on: http://localhost:5000
+  #### Backend runs on: http://localhost:5000
 
-📊 Project Status
+## 📊 Project Status
 
-🚧 In Development
+🚧 **In Development**
 
-React frontend: ✅ Completed
+- React frontend: ✅ Completed  
+- Backend APIs: 🚧 In progress  
 
-Backend APIs: 🚧 In progress

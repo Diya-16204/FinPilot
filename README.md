@@ -76,8 +76,8 @@ FinPilot/
 
   - Start frontend
    ```bash
-      cd ../frontend
-      npm start
+        cd ../frontend
+        npm start
   ```
 
 

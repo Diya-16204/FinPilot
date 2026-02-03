@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
 import "./exportReports.css";
-import { downloadFile } from "../../utils/exportUtils.js";
-import { filterExpenses } from "../../utils/filterUtils.js";
 import * as XLSX from "xlsx";
-import { jsPDF } from "jspdf";
-import autoTable from "jspdf-autotable";
 
 const ExportReports = () => {
   const [expenses, setExpenses] = useState([]);
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   useEffect(() => {
     async function fetchExpenses() {
@@ -27,62 +25,72 @@ const ExportReports = () => {
     fetchExpenses();
   }, []);
 
-  // ✅ Export CSV
-  const exportCSV = (range) => {
-    const filtered = filterExpenses(expenses, range);
-    const header = "Date,Category,Amount\n";
-    const rows = filtered.map(t => `${t.date},${t.category},${t.amount}`).join("\n");
-    downloadFile(header + rows, `transactions_${range}.csv`, "text/csv");
-  };
+  // ✅ Export Recent (latest 10 or all if < 10)
+  const exportRecent = () => {
+    const sorted = [...expenses].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    const lastTen = sorted.length <= 10 ? sorted : sorted.slice(0, 10);
 
-  // ✅ Export Excel
-  const exportExcel = (range) => {
-    const filtered = filterExpenses(expenses, range);
-    const worksheet = XLSX.utils.json_to_sheet(filtered);
+    const worksheet = XLSX.utils.json_to_sheet(lastTen);
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Expenses");
-    XLSX.writeFile(workbook, `transactions_${range}.xlsx`);
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Recent Expenses");
+    XLSX.writeFile(workbook, "recent_expenses.xlsx");
   };
 
-  // ✅ Export PDF
-  const exportPDF = (range) => {
-    const filtered = filterExpenses(expenses, range);
-    if (!filtered.length) {
-      alert("No expense data found!");
+  // ✅ Export Custom Range
+  const exportCustom = () => {
+    if (!fromDate || !toDate) {
+      alert("Please select both From and To dates");
+      return;
+    }
+    const from = new Date(fromDate);
+    const to = new Date(toDate);
+
+    if (to < from) {
+      alert("To date cannot be earlier than From date");
       return;
     }
 
-    const doc = new jsPDF();
-    doc.setFontSize(16);
-    doc.text("Expense Report", 14, 20);
-
-    const tableData = filtered.map(t => [t.date, t.amount, t.category]);
-
-    autoTable(doc, {
-      head: [["Date", "Amount", "Category"]],
-      body: tableData,
-      startY: 30,
+    const filtered = expenses.filter(e => {
+      const d = new Date(e.date);
+      return d >= from && d <= to;
     });
 
-    doc.save(`transactions_${range}.pdf`);
+    if (!filtered.length) {
+      alert("No expenses found in this range");
+      return;
+    }
+
+    const worksheet = XLSX.utils.json_to_sheet(filtered);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Custom Expenses");
+    XLSX.writeFile(workbook, `expenses_${fromDate}_to_${toDate}.xlsx`);
   };
 
   return (
     <div className="export-page">
-      <h2>Export Reports</h2>
-      <p>Download your expense reports in CSV, Excel, or PDF format.</p>
+      <h2>Export Reports (Excel)</h2>
+      <p>Download your expense reports in Excel format.</p>
+
       <div className="export-actions">
-        <button onClick={() => exportCSV("recent")}>CSV (Recent)</button>
-        <button onClick={() => exportExcel("recent")}>Excel (Recent)</button>
-        <button onClick={() => exportPDF("recent")}>PDF (Recent)</button>
+        {/* ✅ Recent Export Button */}
+        <button onClick={exportRecent}>Export Recent Data</button>
+      </div>
 
-        <button onClick={() => exportCSV("month")}>CSV (Last Month)</button>
-        <button onClick={() => exportExcel("month")}>Excel (Last Month)</button>
-        <button onClick={() => exportPDF("month")}>PDF (Last Month)</button>
-
-        <button onClick={() => exportCSV("year")}>CSV (Last Year)</button>
-        <button onClick={() => exportExcel("year")}>Excel (Last Year)</button>
-        <button onClick={() => exportPDF("year")}>PDF (Last Year)</button>
+      {/* ✅ Custom Dates on Next Line */}
+      <div className="date-range">
+        <input
+          type="date"
+          value={fromDate}
+          onChange={e => setFromDate(e.target.value)}
+        />
+        <input
+          type="date"
+          value={toDate}
+          onChange={e => setToDate(e.target.value)}
+        />
+        <button onClick={exportCustom}>Export Custom Dates</button>
       </div>
     </div>
   );

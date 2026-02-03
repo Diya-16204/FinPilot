@@ -39,3 +39,28 @@
 .export-actions button:hover {
   background-color: #023e8a;
 }
+
+
+.date-range {
+  margin-top: 20px;   /* ✅ pushes custom dates to next line */
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.date-range button{
+  background-color: black;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #010f29;
+  color: #fff;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.date-range button:hover {
+  background-color: #023e8a;
+}

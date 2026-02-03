@@ -144,9 +144,9 @@ import VisualizePie from "./pages/Visualize/pie";
 import VisualizeBar from "./pages/Visualize/bar";
 import VisualizeTrends from "./pages/Visualize/trend";
 import ExportReports from "./pages/ExportReports/exportReports";
-import ExportCSV from "./pages/ExportReports/csv";
-import ExportExcel from "./pages/ExportReports/excel";
-import ExportPDF from "./pages/ExportReports/pdf";
+// import ExportCSV from "./pages/ExportReports/csv";
+// import ExportExcel from "./pages/ExportReports/excel";
+// import ExportPDF from "./pages/ExportReports/pdf";
 import ExpenseForecast from "./pages/ExpensePrediction/forecast";
 import ExpenseMonthly from "./pages/ExpensePrediction/monthly";
 import ExpenseYearly from "./pages/ExpensePrediction/yearly";
@@ -201,9 +201,9 @@ function App() {
           <Route path="/visualize-expenses/trends" element={<ProtectedRoute><VisualizeTrends /></ProtectedRoute>} />
 
           <Route path="/export-reports" element={<ProtectedRoute><ExportReports /></ProtectedRoute>} />
-          <Route path="/export-reports/csv" element={<ProtectedRoute><ExportCSV /></ProtectedRoute>} />
+          {/* <Route path="/export-reports/csv" element={<ProtectedRoute><ExportCSV /></ProtectedRoute>} />
           <Route path="/export-reports/excel" element={<ProtectedRoute><ExportExcel /></ProtectedRoute>} />
-          <Route path="/export-reports/pdf" element={<ProtectedRoute><ExportPDF /></ProtectedRoute>} />
+          <Route path="/export-reports/pdf" element={<ProtectedRoute><ExportPDF /></ProtectedRoute>} /> */}
 
           <Route path="/expense-prediction/forecast" element={<ProtectedRoute><ExpenseForecast /></ProtectedRoute>} />
           <Route path="/expense-prediction/monthly" element={<ProtectedRoute><ExpenseMonthly /></ProtectedRoute>} />

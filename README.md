@@ -43,15 +43,15 @@ FinPilot/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/FinPilot.git
-cd FinPilot
+  git clone https://github.com/your-username/FinPilot.git
+  cd FinPilot
 ```
 ### 2. Install dependencies
   - Backend
-      ````bash
+    ````bash
       cd backend
       npm install
-      ````
+    ````
 
   - Frontend
     ```bash

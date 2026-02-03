@@ -106,3 +106,21 @@
   font-weight: 500;
   color: #fff;
 }
+
+
+.expense-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.expense-table th, .expense-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+  color: blue;
+}
+
+.expense-table th {
+  background-color: #a2aac6;
+}

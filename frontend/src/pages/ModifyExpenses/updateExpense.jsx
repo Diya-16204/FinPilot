@@ -42,9 +42,22 @@ const UpdateExpense = () => {
   return (
     <div className="update-page">
       <h3>Update Expense</h3>
-      <input placeholder="Date" value={date} onChange={e => setDate(e.target.value)} />
-      <input placeholder="Amount" value={amount} onChange={e => setAmount(e.target.value)} />
-      <input placeholder="Category" value={category} onChange={e => setCategory(e.target.value)} />
+      <input
+        type="date"   // ✅ Calendar picker
+        value={date}
+        onChange={e => setDate(e.target.value)}
+      />
+      <input
+        type="number" // ✅ numeric input for amount
+        placeholder="Amount"
+        value={amount}
+        onChange={e => setAmount(e.target.value)}
+      />
+      <input
+        placeholder="Category"
+        value={category}
+        onChange={e => setCategory(e.target.value)}
+      />
       <button onClick={handleUpdate}>Update</button>
       {message && <p>{message}</p>}
     </div>

@@ -9,7 +9,7 @@ const SearchView = () => {
 
   useEffect(() => {
     async function fetchExpenses() {
-      const token = localStorage.getItem("token"); // ✅ get JWT token
+      const token = localStorage.getItem("token");
       if (!token) {
         setLoading(false);
         setExpenses([]);
@@ -19,12 +19,12 @@ const SearchView = () => {
 
       try {
         const res = await fetch("http://127.0.0.1:5000/expenses", {
-          headers: { Authorization: `Bearer ${token}` }, // ✅ send token
+          headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
         if (res.ok) {
           setExpenses(data);
-          setResults(data); // ✅ initial view = all expenses
+          setResults(data);
         } else {
           alert(data.error || "Failed to load expenses");
         }
@@ -45,7 +45,7 @@ const SearchView = () => {
       (e) =>
         e.date.toLowerCase().includes(q) ||
         e.category.toLowerCase().includes(q) ||
-        String(e.amount).includes(q) // ✅ allow search by amount too
+        String(e.amount).includes(q)
     );
     setResults(filtered);
   };
@@ -54,9 +54,9 @@ const SearchView = () => {
     <div className="search-page">
       <h3>Search Expenses</h3>
       <div className="search-bar">
+        {/* ✅ Calendar picker for date search */}
         <input
-          type="text"
-          placeholder="Search by date, category, or amount"
+          type="date"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

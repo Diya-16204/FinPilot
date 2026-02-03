@@ -1,8 +1,16 @@
 import { useEffect, useState } from "react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend
+} from "recharts";
 import "./visualizeCharts.css";
 
-const VisualizeTrends = () => {
+const VisualizeDayWiseTrends = () => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
@@ -17,13 +25,19 @@ const VisualizeTrends = () => {
         const data = await res.json();
 
         if (res.ok) {
-          // ✅ Group by month
+          // ✅ Group by exact day (YYYY-MM-DD)
           const grouped = data.reduce((acc, exp) => {
-            const month = new Date(exp.date).toLocaleString("default", { month: "short" });
-            acc[month] = (acc[month] || 0) + exp.amount;
+            const d = new Date(exp.date);
+            const key = d.toISOString().split("T")[0]; // YYYY-MM-DD
+            acc[key] = (acc[key] || 0) + exp.amount;
             return acc;
           }, {});
-          const formatted = Object.entries(grouped).map(([month, expense]) => ({ month, expense }));
+
+          // ✅ Format for Recharts
+          const formatted = Object.entries(grouped)
+            .map(([day, expense]) => ({ day, expense }))
+            .sort((a, b) => new Date(a.day) - new Date(b.day));
+
           setChartData(formatted);
         }
       } catch (err) {
@@ -35,19 +49,19 @@ const VisualizeTrends = () => {
 
   return (
     <section className="visualize-section">
-      <h2>Trends Visualization</h2>
+      <h2>Day-wise Trends</h2>
       <div className="chart-container">
-        <LineChart width={500} height={300} data={chartData}>
+        <LineChart width={700} height={350} data={chartData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="month" />
-          <YAxis />
-          <Tooltip />
+          <XAxis dataKey="day" />
+          <YAxis tickFormatter={(v) => `₹${v}`} />
+          <Tooltip formatter={(value) => `₹${value}`} />
           <Legend />
-          <Line type="monotone" dataKey="expense" stroke="#8884d8" />
+          <Line type="monotone" dataKey="expense" stroke="#ff7300" />
         </LineChart>
       </div>
     </section>
   );
 };
 
-export default VisualizeTrends;
+export default VisualizeDayWiseTrends;

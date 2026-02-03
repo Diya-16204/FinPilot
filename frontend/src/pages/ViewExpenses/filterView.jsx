@@ -5,10 +5,12 @@ const FilterView = () => {
   const [expenses, setExpenses] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   useEffect(() => {
     async function fetchExpenses() {
-      const token = localStorage.getItem("token"); // ✅ get JWT token
+      const token = localStorage.getItem("token");
       if (!token) {
         setLoading(false);
         setExpenses([]);
@@ -18,12 +20,12 @@ const FilterView = () => {
 
       try {
         const res = await fetch("http://127.0.0.1:5000/expenses", {
-          headers: { Authorization: `Bearer ${token}` }, // ✅ send token
+          headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
         if (res.ok) {
           setExpenses(data);
-          setFiltered(data); // ✅ initial view = all expenses
+          setFiltered(data);
         } else {
           alert(data.error || "Failed to load expenses");
         }
@@ -38,18 +40,35 @@ const FilterView = () => {
     fetchExpenses();
   }, []);
 
-  const recent = () => setFiltered(expenses.slice(-10));
-
-  const weekly = () => {
-    const weekAgo = new Date();
-    weekAgo.setDate(weekAgo.getDate() - 7);
-    setFiltered(expenses.filter(e => new Date(e.date) >= weekAgo));
+  // ✅ Recent filter
+  const recent = () => {
+    const sorted = [...expenses].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    const lastTen = sorted.length <= 10 ? sorted : sorted.slice(0, 10);
+    setFiltered(lastTen);
   };
 
-  const monthly = () => {
-    const monthAgo = new Date();
-    monthAgo.setMonth(monthAgo.getMonth() - 1);
-    setFiltered(expenses.filter(e => new Date(e.date) >= monthAgo));
+  // ✅ Custom date range filter
+  const customRange = () => {
+    if (!fromDate || !toDate) {
+      alert("Please select both From and To dates");
+      return;
+    }
+    const from = new Date(fromDate);
+    const to = new Date(toDate);
+
+    if (to < from) {
+      alert("To date cannot be earlier than From date");
+      return;
+    }
+
+    const filteredRange = expenses.filter(e => {
+      const d = new Date(e.date);
+      return d >= from && d <= to;
+    });
+
+    setFiltered(filteredRange);
   };
 
   return (
@@ -57,8 +76,19 @@ const FilterView = () => {
       <h3>Filtered Expenses</h3>
       <div className="filter-buttons">
         <button onClick={recent}>Recent</button>
-        <button onClick={weekly}>Weekly</button>
-        <button onClick={monthly}>Monthly</button>
+        <div className="date-range">
+          <input
+            type="date"
+            value={fromDate}
+            onChange={e => setFromDate(e.target.value)}
+          />
+          <input
+            type="date"
+            value={toDate}
+            onChange={e => setToDate(e.target.value)}
+          />
+          <button onClick={customRange}>Custom Dates</button>
+        </div>
       </div>
 
       {loading ? (

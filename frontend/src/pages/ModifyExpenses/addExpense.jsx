@@ -8,10 +8,15 @@ const AddExpense = () => {
   const [message, setMessage] = useState("");
 
   const handleAdd = async () => {
-    const token = localStorage.getItem("token"); // ✅ check if user is logged in
+    const token = localStorage.getItem("token");
+
+    // ✅ Validation: date and amount must not be empty
+    if (!date || !amount) {
+      setMessage("Please fill in both Date and Amount fields.");
+      return;
+    }
 
     if (!token) {
-      // Guest mode → no DB save
       setMessage("Guest mode: Expense not saved permanently.");
       return;
     }
@@ -21,7 +26,7 @@ const AddExpense = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // ✅ send token
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ date, amount, category }),
       });
@@ -29,7 +34,6 @@ const AddExpense = () => {
       const data = await res.json();
       if (res.ok) {
         setMessage(data.message || "Expense added successfully!");
-        // ✅ optional: clear form after success
         setDate("");
         setAmount("");
         setCategory("");
@@ -46,11 +50,12 @@ const AddExpense = () => {
     <div className="add-page">
       <h3>Add Expense</h3>
       <input
-        placeholder="Date"
+        type="date"   // ✅ Calendar picker
         value={date}
         onChange={e => setDate(e.target.value)}
       />
       <input
+        type="number" // ✅ numeric input
         placeholder="Amount"
         value={amount}
         onChange={e => setAmount(e.target.value)}
